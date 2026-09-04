@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./docs/cover.svg" alt="Antonio Carbone portfolio" width="100%" />
+  <img src="./docs/cover.png" alt="Antonio Carbone portfolio" width="100%" />
 </p>
 
 <h1 align="center">Antonio Carbone — Portfolio</h1>
