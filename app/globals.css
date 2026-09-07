@@ -532,7 +532,7 @@
 
 .contact-links nav {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   gap: clamp(24px, 4vw, 60px);
 }
 
@@ -972,10 +972,15 @@ main {
   height: 0.58em;
   margin: 0 0.1em;
   overflow: hidden;
+  border: 3px solid var(--acid);
   border-radius: 999px;
   background: var(--acid);
   vertical-align: 0.06em;
   transform: rotate(-3deg);
+}
+
+.inline-portrait img {
+  object-fit: contain;
 }
 
 .chat-reveal-bottom {
@@ -1115,10 +1120,70 @@ main {
 }
 
 .journey-header {
+  display: grid;
   width: min(1400px, calc(100% - 48px));
   min-height: 70svh;
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 0.48fr);
+  align-items: end;
+  gap: clamp(56px, 9vw, 150px);
   margin: 0 auto;
   padding: 140px 0 90px;
+}
+
+.journey-origin {
+  display: grid;
+  grid-template-columns: minmax(150px, 0.8fr) minmax(170px, 1fr);
+  align-items: stretch;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.journey-origin-image {
+  position: relative;
+  min-height: 190px;
+  overflow: hidden;
+}
+
+.journey-origin-image img,
+.journey-image img {
+  object-fit: cover;
+}
+
+.journey-origin > div:last-child {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px;
+}
+
+.journey-origin p,
+.journey-origin h3,
+.journey-origin span {
+  margin: 0;
+}
+
+.journey-origin p {
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.journey-origin h3 {
+  margin-top: 14px;
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 44px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 0.9;
+}
+
+.journey-origin span {
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.45;
 }
 
 .journey-header .overline {
@@ -1369,7 +1434,17 @@ main {
   }
 
   .journey-header {
+    display: block;
     min-height: auto;
+  }
+
+  .journey-origin {
+    grid-template-columns: 1fr;
+    margin-top: 58px;
+  }
+
+  .journey-origin-image {
+    min-height: 230px;
   }
 
   .journey-viewport {

@@ -13,7 +13,7 @@ const content = {
     backToTop: 'Antonio Carbone, torna all’inizio',
     career: {
       eyebrow: 'Percorso professionale e formazione',
-      title: <>Ingegneria prima.<br />AI nel mondo reale, oggi.</>,
+      title: <>Esperienza, formazione<br />e ricerca.</>,
       intro: 'La formazione mi ha dato il metodo. Il lavoro mi ha insegnato a trasformarlo in decisioni, software e prodotti che devono funzionare davvero.',
       items: [
         { period: '2024 - oggi', kind: 'Lavoro', role: 'AI Engineer', place: 'Affinity', text: 'Gestisco progetti AI dai requisiti alla produzione, unendo sviluppo, scelte tecniche e coordinamento del lavoro.' },
@@ -33,7 +33,7 @@ const content = {
       product: 'In questo contesto ho lavorato anche a SoulAI, un prodotto conversazionale di cui ho seguito progettazione tecnica, sviluppo e integrazione.',
       companyLink: 'Visita Affinity',
       companyHref: 'https://www.affinitylab.it/',
-      privateEyebrow: 'Progetto imprenditoriale',
+      privateEyebrow: 'Progetto privato',
       privateTitle: 'BePlanny',
       privateText: 'Nato con un collega per semplificare la gestione delle attività che lavorano su appuntamento. Ho contribuito alla visione del prodotto e allo sviluppo dell’ecosistema web e mobile; i dettagli interni restano privati.',
       privateLink: 'Visita beplanny.com',
@@ -52,8 +52,8 @@ const content = {
     journey: {
       eyebrow: 'Oltre il codice',
       title: <>Le esperienze che<br />mi hanno formato.</>,
+      origin: { title: 'Lapio', kicker: 'Le radici', image: '/lapio-optimized.jpg', alt: 'Paesaggio di Lapio, in Irpinia', text: 'Il luogo da cui vengo, in Irpinia.' },
       items: [
-        { title: 'Lapio', kicker: 'Le radici', image: '/lapio-optimized.jpg', alt: 'Paesaggio di Lapio, in Irpinia', text: 'Il luogo da cui vengo. Mi ha lasciato concretezza, senso della comunità e attenzione per le persone.' },
         { title: 'StudentIngegneria', kicker: 'La comunità', image: '/studentingegneria-optimized.jpg', alt: 'Il gruppo di StudentIngegneria all’Università di Salerno', text: 'Da rappresentante e vicepresidente ho imparato a organizzare, ascoltare e prendermi responsabilità per una comunità molto più grande di me.' },
         { title: 'Consiglio di Amministrazione', kicker: 'La responsabilità', image: '/piazzadelsapere-optimized.jpg', alt: 'Il campus dell’Università degli Studi di Salerno', text: 'Dal 2021 al 2024 ho rappresentato gli studenti nel Consiglio di Amministrazione dell’Università di Salerno.' },
       ],
@@ -78,7 +78,7 @@ const content = {
     backToTop: 'Antonio Carbone, back to top',
     career: {
       eyebrow: 'Professional experience and education',
-      title: <>Engineering first.<br />AI in the real world, today.</>,
+      title: <>Experience, education<br />and research.</>,
       intro: 'Education gave me the method. Work taught me how to turn it into decisions, software and products that have to perform in the real world.',
       items: [
         { period: '2024 - present', kind: 'Work', role: 'AI Engineer', place: 'Affinity', text: 'I lead AI projects from requirements to production, combining development, technical decisions and team coordination.' },
@@ -98,7 +98,7 @@ const content = {
       product: 'In this context, I also worked on SoulAI, a conversational product whose technical design, development and integration I helped shape.',
       companyLink: 'Visit Affinity',
       companyHref: 'https://www.affinitylab.it/',
-      privateEyebrow: 'Entrepreneurial project',
+      privateEyebrow: 'Private project',
       privateTitle: 'BePlanny',
       privateText: 'Started with a colleague to simplify operations for appointment-based businesses. I contributed to the product vision and to the web and mobile ecosystem; internal details remain private.',
       privateLink: 'Visit beplanny.com',
@@ -117,8 +117,8 @@ const content = {
     journey: {
       eyebrow: 'Beyond the code',
       title: <>The experiences<br />that shaped me.</>,
+      origin: { title: 'Lapio', kicker: 'My roots', image: '/lapio-optimized.jpg', alt: 'Landscape of Lapio in Irpinia, Italy', text: 'The place I come from, in Irpinia.' },
       items: [
-        { title: 'Lapio', kicker: 'My roots', image: '/lapio-optimized.jpg', alt: 'Landscape of Lapio in Irpinia, Italy', text: 'The place I come from. It taught me to be practical, value community and pay attention to people.' },
         { title: 'StudentIngegneria', kicker: 'The community', image: '/studentingegneria-optimized.jpg', alt: 'The StudentIngegneria group at the University of Salerno', text: 'As a student representative and vice president, I learned to organise, listen and take responsibility for a community much larger than myself.' },
         { title: 'Board of Directors', kicker: 'Responsibility', image: '/piazzadelsapere-optimized.jpg', alt: 'The University of Salerno campus', text: 'From 2021 to 2024, I represented students on the University of Salerno Board of Directors.' },
       ],
@@ -213,7 +213,13 @@ export default function PortfolioHome({ locale }: { locale: Locale }) {
       </section>
 
       <section id="percorso" className="journey-section" aria-labelledby="journey-title">
-        <div className="journey-header"><p className="overline">{copy.journey.eyebrow}</p><h2 id="journey-title">{copy.journey.title}</h2></div>
+        <div className="journey-header">
+          <div className="journey-heading"><p className="overline">{copy.journey.eyebrow}</p><h2 id="journey-title">{copy.journey.title}</h2></div>
+          <article className="journey-origin">
+            <div className="journey-origin-image"><Image src={copy.journey.origin.image} alt={copy.journey.origin.alt} fill sizes="(max-width: 800px) 100vw, 260px" /></div>
+            <div><p>{copy.journey.origin.kicker}</p><h3>{copy.journey.origin.title}</h3><span>{copy.journey.origin.text}</span></div>
+          </article>
+        </div>
         <div className="journey-viewport"><div className="journey-track">
           {copy.journey.items.map((item) => (
             <article className={`journey-slide ${item.title.length > 18 ? 'journey-slide--long' : ''} ${item.title === 'StudentIngegneria' ? 'journey-slide--student' : ''}`} key={item.title}>
