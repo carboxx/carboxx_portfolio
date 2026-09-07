@@ -10,6 +10,8 @@ export const metadata: Metadata = {
     alternateLocale: ['en_US'],
     title: 'Antonio Carbone | Ingegnere informatico e AI Engineer',
     description: 'Esperienza, formazione e prodotti digitali costruiti tra software e intelligenza artificiale.',
+    url: '/',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Antonio Carbone, Ingegnere informatico e AI Engineer' }],
   },
 };
 

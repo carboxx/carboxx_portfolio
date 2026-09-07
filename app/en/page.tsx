@@ -10,6 +10,8 @@ export const metadata: Metadata = {
     alternateLocale: ['it_IT'],
     title: 'Antonio Carbone | Computer Engineer and AI Engineer',
     description: 'Experience, education and digital products built at the intersection of software and artificial intelligence.',
+    url: '/en',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Antonio Carbone, Computer Engineer and AI Engineer' }],
   },
 };
 

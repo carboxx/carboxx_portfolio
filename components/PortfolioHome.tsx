@@ -7,6 +7,7 @@ type Locale = 'it' | 'en';
 
 const content = {
   it: {
+    skipToContent: 'Vai al contenuto',
     nav: { experience: 'Esperienza', projects: 'Progetti', journey: 'Percorso', contact: 'Parliamone' },
     navLabel: 'Navigazione principale',
     backToTop: 'Antonio Carbone, torna all’inizio',
@@ -45,7 +46,7 @@ const content = {
       action: 'Apri GitHub',
       repos: [
         { name: 'carboxx-smart-finance-ai-app', label: 'Open source', language: 'JavaScript', text: 'Gestione finanziaria personale con insight AI, analisi del portafoglio e interrogazione dei dati in linguaggio naturale.', href: 'https://github.com/carboxx/carboxx-smart-finance-ai-app' },
-        { name: 'carboxx_portfolio', label: 'Portfolio attuale', language: 'Web', text: 'Il repository del portfolio che stai visitando. Il codice pubblico verrà aggiornato con questa versione.', href: 'https://github.com/carboxx/carboxx_portfolio' },
+        { name: 'carboxx_portfolio', label: 'Portfolio attuale', language: 'Web', text: 'Il codice del portfolio che stai visitando: struttura bilingue, animazioni e resa responsive.', href: 'https://github.com/carboxx/carboxx_portfolio' },
       ],
     },
     journey: {
@@ -66,10 +67,12 @@ const content = {
       elsewhere: 'Altrove',
       location: 'Salerno, Italia',
       resume: 'Curriculum (EN)',
+      resumeHref: '/cv_en.pdf',
       role: 'Ingegnere informatico / AI Engineer',
     },
   },
   en: {
+    skipToContent: 'Skip to content',
     nav: { experience: 'Experience', projects: 'Projects', journey: 'Journey', contact: 'Let’s talk' },
     navLabel: 'Main navigation',
     backToTop: 'Antonio Carbone, back to top',
@@ -108,7 +111,7 @@ const content = {
       action: 'Open GitHub',
       repos: [
         { name: 'carboxx-smart-finance-ai-app', label: 'Open source', language: 'JavaScript', text: 'Personal finance management with AI insights, portfolio analysis and natural-language data exploration.', href: 'https://github.com/carboxx/carboxx-smart-finance-ai-app' },
-        { name: 'carboxx_portfolio', label: 'Current portfolio', language: 'Web', text: 'The repository for the portfolio you are visiting. The public code will be updated with this version.', href: 'https://github.com/carboxx/carboxx_portfolio' },
+        { name: 'carboxx_portfolio', label: 'Current portfolio', language: 'Web', text: 'The code behind the portfolio you are visiting: bilingual structure, motion and responsive layout.', href: 'https://github.com/carboxx/carboxx_portfolio' },
       ],
     },
     journey: {
@@ -129,6 +132,7 @@ const content = {
       elsewhere: 'Elsewhere',
       location: 'Salerno, Italy',
       resume: 'Resume',
+      resumeHref: '/cv_en.pdf',
       role: 'Computer Engineer / AI Engineer',
     },
   },
@@ -139,6 +143,7 @@ export default function PortfolioHome({ locale }: { locale: Locale }) {
 
   return (
     <main id="top">
+      <a className="skip-link" href="#esperienza">{copy.skipToContent}</a>
       <PortfolioMotion />
       <HeroChat locale={locale} />
 
@@ -234,7 +239,7 @@ export default function PortfolioHome({ locale }: { locale: Locale }) {
           <nav aria-label={copy.contact.elsewhere}>
             <a href="https://www.linkedin.com/in/antoniocarbone97" target="_blank" rel="noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
             <a href="https://github.com/carboxx" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
-            <a href="/cv_en.pdf" target="_blank" rel="noreferrer">{copy.contact.resume} <span aria-hidden="true">↗</span></a>
+            <a href={copy.contact.resumeHref} target="_blank" rel="noreferrer">{copy.contact.resume} <span aria-hidden="true">↗</span></a>
           </nav>
         </div>
         <footer><span>Antonio Carbone · {copy.contact.role}</span><span>© 2026</span></footer>

@@ -1169,7 +1169,7 @@ main {
 .journey-copy {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
   padding: 64px max(42px, 5vw);
 }
 
@@ -1658,8 +1658,8 @@ body::before {
 @media (max-width: 800px) {
   .chat-card--intro {
     width: calc(100% - 24px);
-    height: calc(100svh - 76px);
-    min-height: 610px;
+    height: min(600px, calc(100svh - 76px));
+    min-height: 540px;
   }
 
   .contact-section {
@@ -1741,6 +1741,28 @@ body::before {
   .journey-slide--student .journey-copy h3 {
     font-size: clamp(27px, 8.5vw, 38px);
   }
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 1000;
+  top: 12px;
+  left: 12px;
+  padding: 10px 14px;
+  transform: translateY(-150%);
+  background: var(--ink);
+  color: var(--paper-bright);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
 }
 
 /* Keep the GitHub showcase full-bleed after legacy section rules above. */
@@ -1866,15 +1888,33 @@ body::before {
   }
 
   .contact-section footer {
+    display: flex;
     align-items: flex-start;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
     margin-top: 30px;
   }
 
   .contact-mail strong {
     font-size: clamp(24px, 7vw, 30px);
     white-space: nowrap;
+  }
+
+  .contact-section footer span {
+    display: block;
+  }
+}
+
+@media (max-width: 360px) {
+  .contact-mail {
+    grid-template-columns: minmax(0, 1fr) 28px;
+    gap: 6px;
+  }
+
+  .contact-mail strong {
+    min-width: 0;
+    font-size: 6.7vw;
+    letter-spacing: -0.045em;
   }
 }
 
