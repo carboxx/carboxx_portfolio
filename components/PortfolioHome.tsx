@@ -148,7 +148,9 @@ export default function PortfolioHome({ locale }: { locale: Locale }) {
       <HeroChat locale={locale} />
 
       <header className="site-nav">
-        <a className="wordmark" href="#top" aria-label={copy.backToTop}>carbo<span>xx</span></a>
+        <a className="wordmark" href="#top" aria-label={copy.backToTop}>
+          <Image src="/carboxx-wordmark.png" alt="" width={640} height={130} priority />
+        </a>
         <nav aria-label={copy.navLabel}>
           <a href="#esperienza">{copy.nav.experience}</a>
           <a href="#progetti">{copy.nav.projects}</a>

@@ -1598,25 +1598,29 @@ main {
 }
 
 .wordmark {
-  font-family: "Instrument Serif", Georgia, serif;
-  font-size: 31px;
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: -0.065em;
-  line-height: 0.8;
-  transform: rotate(-2deg);
-  transform-origin: left center;
+  display: block;
+  width: 116px;
+  line-height: 0;
+  transform: none;
   transition: transform 220ms ease;
 }
 
-.wordmark span {
-  color: var(--accent);
+.wordmark img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .wordmark:hover,
 .wordmark:focus-visible {
   outline: none;
-  transform: rotate(0deg) translateY(-1px);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 800px) {
+  .wordmark {
+    width: 96px;
+  }
 }
 
 .timeline {
