@@ -52,10 +52,9 @@ const content = {
     journey: {
       eyebrow: 'Oltre il codice',
       title: <>Le esperienze che<br />mi hanno formato.</>,
-      origin: { title: 'Lapio', kicker: 'Le radici', image: '/lapio-optimized.jpg', alt: 'Paesaggio di Lapio, in Irpinia', text: 'Il luogo da cui vengo, in Irpinia.' },
       items: [
-        { title: 'StudentIngegneria', kicker: 'La comunità', image: '/studentingegneria-optimized.jpg', alt: 'Il gruppo di StudentIngegneria all’Università di Salerno', text: 'Da rappresentante e vicepresidente ho imparato a organizzare, ascoltare e prendermi responsabilità per una comunità molto più grande di me.' },
-        { title: 'Consiglio di Amministrazione', kicker: 'La responsabilità', image: '/piazzadelsapere-optimized.jpg', alt: 'Il campus dell’Università degli Studi di Salerno', text: 'Dal 2021 al 2024 ho rappresentato gli studenti nel Consiglio di Amministrazione dell’Università di Salerno.' },
+        { title: 'Università degli Studi di Salerno', kicker: 'La formazione', image: '/piazzadelsapere-optimized.jpg', alt: 'Il campus dell’Università degli Studi di Salerno', text: 'Qui ho conseguito la laurea triennale e magistrale in Ingegneria Informatica, con curriculum in Artificial Intelligence.' },
+        { title: 'StudentIngegneria e CdA UniSa', kicker: 'La rappresentanza', image: '/studentingegneria-optimized.jpg', alt: 'Il gruppo di StudentIngegneria all’Università di Salerno', text: 'Come rappresentante e vicepresidente di StudentIngegneria, e dal 2021 al 2024 nel CdA di UniSa, ho organizzato, ascoltato e rappresentato la comunità studentesca.' },
       ],
     },
     contact: {
@@ -117,10 +116,9 @@ const content = {
     journey: {
       eyebrow: 'Beyond the code',
       title: <>The experiences<br />that shaped me.</>,
-      origin: { title: 'Lapio', kicker: 'My roots', image: '/lapio-optimized.jpg', alt: 'Landscape of Lapio in Irpinia, Italy', text: 'The place I come from, in Irpinia.' },
       items: [
-        { title: 'StudentIngegneria', kicker: 'The community', image: '/studentingegneria-optimized.jpg', alt: 'The StudentIngegneria group at the University of Salerno', text: 'As a student representative and vice president, I learned to organise, listen and take responsibility for a community much larger than myself.' },
-        { title: 'Board of Directors', kicker: 'Responsibility', image: '/piazzadelsapere-optimized.jpg', alt: 'The University of Salerno campus', text: 'From 2021 to 2024, I represented students on the University of Salerno Board of Directors.' },
+        { title: 'University of Salerno', kicker: 'Education', image: '/piazzadelsapere-optimized.jpg', alt: 'The University of Salerno campus', text: 'I completed both my bachelor’s and master’s degrees in Computer Engineering here, following the Artificial Intelligence curriculum.' },
+        { title: 'StudentIngegneria and UniSa Board', kicker: 'Student representation', image: '/studentingegneria-optimized.jpg', alt: 'The StudentIngegneria group at the University of Salerno', text: 'As a StudentIngegneria representative and vice president, and as a member of the UniSa Board from 2021 to 2024, I organised, listened to and represented the student community.' },
       ],
     },
     contact: {
@@ -218,13 +216,9 @@ export default function PortfolioHome({ locale }: { locale: Locale }) {
         <div className="journey-header">
           <div className="journey-heading"><p className="overline">{copy.journey.eyebrow}</p><h2 id="journey-title">{copy.journey.title}</h2></div>
         </div>
-        <article className="journey-origin">
-          <div className="journey-origin-image"><Image src={copy.journey.origin.image} alt={copy.journey.origin.alt} fill sizes="(max-width: 800px) 100vw, 1400px" /></div>
-          <div><p>{copy.journey.origin.kicker}</p><h3>{copy.journey.origin.title}</h3><span>{copy.journey.origin.text}</span></div>
-        </article>
         <div className="journey-viewport"><div className="journey-track">
           {copy.journey.items.map((item) => (
-            <article className={`journey-slide ${item.title.length > 18 ? 'journey-slide--long' : ''} ${item.title === 'StudentIngegneria' ? 'journey-slide--student' : ''}`} key={item.title}>
+            <article className={`journey-slide ${item.title.length > 18 ? 'journey-slide--long' : ''} ${item.title.startsWith('StudentIngegneria') ? 'journey-slide--student' : ''}`} key={item.title}>
               <div className="journey-image"><Image src={item.image} alt={item.alt} fill sizes="(max-width: 800px) 100vw, 60vw" /></div>
               <div className="journey-copy"><p>{item.kicker}</p><h3>{item.title}</h3><span>{item.text}</span></div>
             </article>
