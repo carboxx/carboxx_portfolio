@@ -152,7 +152,7 @@ export default function HeroChat({ locale }: { locale: 'it' | 'en' }) {
             <h1 id="hero-title">
               {copy.beforePortrait}
               <span className="inline-portrait" aria-hidden="true">
-                <Image src="/antonio-photo.jpg" alt="" fill sizes="130px" priority />
+                <Image src="/antonio-cutout.png" alt="" fill sizes="180px" priority />
               </span>
               <br />{copy.afterPortrait}
             </h1>

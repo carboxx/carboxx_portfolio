@@ -217,11 +217,11 @@ export default function PortfolioHome({ locale }: { locale: Locale }) {
       <section id="percorso" className="journey-section" aria-labelledby="journey-title">
         <div className="journey-header">
           <div className="journey-heading"><p className="overline">{copy.journey.eyebrow}</p><h2 id="journey-title">{copy.journey.title}</h2></div>
-          <article className="journey-origin">
-            <div className="journey-origin-image"><Image src={copy.journey.origin.image} alt={copy.journey.origin.alt} fill sizes="(max-width: 800px) 100vw, 260px" /></div>
-            <div><p>{copy.journey.origin.kicker}</p><h3>{copy.journey.origin.title}</h3><span>{copy.journey.origin.text}</span></div>
-          </article>
         </div>
+        <article className="journey-origin">
+          <div className="journey-origin-image"><Image src={copy.journey.origin.image} alt={copy.journey.origin.alt} fill sizes="(max-width: 800px) 100vw, 1400px" /></div>
+          <div><p>{copy.journey.origin.kicker}</p><h3>{copy.journey.origin.title}</h3><span>{copy.journey.origin.text}</span></div>
+        </article>
         <div className="journey-viewport"><div className="journey-track">
           {copy.journey.items.map((item) => (
             <article className={`journey-slide ${item.title.length > 18 ? 'journey-slide--long' : ''} ${item.title === 'StudentIngegneria' ? 'journey-slide--student' : ''}`} key={item.title}>
