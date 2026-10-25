@@ -20,8 +20,8 @@ const heroCopy = {
     projects: 'Cosa costruisco',
     journey: 'Chi sono davvero',
     continue: 'Continua',
-    beforePortrait: 'Ingegnere informatico.',
-    afterPortrait: <em>AI Engineer.</em>,
+    beforePortrait: 'Costruisco sistemi AI',
+    afterPortrait: <>che diventano <em>prodotti.</em></>,
     subtitle: 'Intelligenza artificiale, software e visione di prodotto per problemi reali.',
     role: 'Ingegnere informatico · AI Engineer',
   },
@@ -38,8 +38,8 @@ const heroCopy = {
     projects: 'What I build',
     journey: 'Who I really am',
     continue: 'Continue',
-    beforePortrait: 'Computer Engineer.',
-    afterPortrait: <em>AI Engineer.</em>,
+    beforePortrait: 'I build AI systems',
+    afterPortrait: <>that become <em>products.</em></>,
     subtitle: 'Artificial intelligence, software and product thinking applied to real problems.',
     role: 'Computer Engineer · AI Engineer',
   },
@@ -152,7 +152,7 @@ export default function HeroChat({ locale }: { locale: 'it' | 'en' }) {
             <h1 id="hero-title">
               {copy.beforePortrait}
               <span className="inline-portrait" aria-hidden="true">
-                <Image src="/antonio-cutout.png" alt="" fill sizes="180px" priority />
+                <Image src="/antonio-photo.jpg" alt="" fill sizes="130px" priority />
               </span>
               <br />{copy.afterPortrait}
             </h1>

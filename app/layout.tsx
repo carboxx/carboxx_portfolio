@@ -21,9 +21,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Antonio Carbone | Ingegnere informatico e AI Engineer',
     description: 'Esperienza, formazione e prodotti digitali costruiti tra software e intelligenza artificiale.',
-    images: ['/og-image.png'],
   },
-  icons: { icon: '/icon.png', apple: '/icon.png' },
   robots: {
     index: true,
     follow: true,

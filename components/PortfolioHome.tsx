@@ -7,13 +7,12 @@ type Locale = 'it' | 'en';
 
 const content = {
   it: {
-    skipToContent: 'Vai al contenuto',
     nav: { experience: 'Esperienza', projects: 'Progetti', journey: 'Percorso', contact: 'Parliamone' },
     navLabel: 'Navigazione principale',
     backToTop: 'Antonio Carbone, torna all’inizio',
     career: {
       eyebrow: 'Percorso professionale e formazione',
-      title: <>Esperienza, formazione<br />e ricerca.</>,
+      title: <>Ingegneria prima.<br />AI nel mondo reale, oggi.</>,
       intro: 'La formazione mi ha dato il metodo. Il lavoro mi ha insegnato a trasformarlo in decisioni, software e prodotti che devono funzionare davvero.',
       items: [
         { period: '2024 - oggi', kind: 'Lavoro', role: 'AI Engineer', place: 'Affinity', text: 'Gestisco progetti AI dai requisiti alla produzione, unendo sviluppo, scelte tecniche e coordinamento del lavoro.' },
@@ -33,7 +32,7 @@ const content = {
       product: 'In questo contesto ho lavorato anche a SoulAI, un prodotto conversazionale di cui ho seguito progettazione tecnica, sviluppo e integrazione.',
       companyLink: 'Visita Affinity',
       companyHref: 'https://www.affinitylab.it/',
-      privateEyebrow: 'Progetto privato',
+      privateEyebrow: 'Progetto imprenditoriale',
       privateTitle: 'BePlanny',
       privateText: 'Nato con un collega per semplificare la gestione delle attività che lavorano su appuntamento. Ho contribuito alla visione del prodotto e allo sviluppo dell’ecosistema web e mobile; i dettagli interni restano privati.',
       privateLink: 'Visita beplanny.com',
@@ -46,15 +45,16 @@ const content = {
       action: 'Apri GitHub',
       repos: [
         { name: 'carboxx-smart-finance-ai-app', label: 'Open source', language: 'JavaScript', text: 'Gestione finanziaria personale con insight AI, analisi del portafoglio e interrogazione dei dati in linguaggio naturale.', href: 'https://github.com/carboxx/carboxx-smart-finance-ai-app' },
-        { name: 'carboxx_portfolio', label: 'Portfolio attuale', language: 'Web', text: 'Il codice del portfolio che stai visitando: struttura bilingue, animazioni e resa responsive.', href: 'https://github.com/carboxx/carboxx_portfolio' },
+        { name: 'carboxx_portfolio', label: 'Portfolio attuale', language: 'Web', text: 'Il repository del portfolio che stai visitando. Il codice pubblico verrà aggiornato con questa versione.', href: 'https://github.com/carboxx/carboxx_portfolio' },
       ],
     },
     journey: {
       eyebrow: 'Oltre il codice',
       title: <>Le esperienze che<br />mi hanno formato.</>,
       items: [
-        { title: 'Università degli Studi di Salerno', kicker: 'La formazione', image: '/piazzadelsapere-optimized.jpg', alt: 'Il campus dell’Università degli Studi di Salerno', text: 'Qui ho conseguito la laurea triennale e magistrale in Ingegneria Informatica, con curriculum in Artificial Intelligence.' },
-        { title: 'StudentIngegneria e CdA UniSa', kicker: 'La rappresentanza', image: '/studentingegneria-optimized.jpg', alt: 'Il gruppo di StudentIngegneria all’Università di Salerno', text: 'Come rappresentante e vicepresidente di StudentIngegneria, e dal 2021 al 2024 nel CdA di UniSa, ho organizzato, ascoltato e rappresentato la comunità studentesca.' },
+        { title: 'Lapio', kicker: 'Le radici', image: '/lapio-optimized.jpg', alt: 'Paesaggio di Lapio, in Irpinia', text: 'Il luogo da cui vengo. Mi ha lasciato concretezza, senso della comunità e attenzione per le persone.' },
+        { title: 'StudentIngegneria', kicker: 'La comunità', image: '/studentingegneria-optimized.jpg', alt: 'Il gruppo di StudentIngegneria all’Università di Salerno', text: 'Da rappresentante e vicepresidente ho imparato a organizzare, ascoltare e prendermi responsabilità per una comunità molto più grande di me.' },
+        { title: 'Consiglio di Amministrazione', kicker: 'La responsabilità', image: '/piazzadelsapere-optimized.jpg', alt: 'Il campus dell’Università degli Studi di Salerno', text: 'Dal 2021 al 2024 ho rappresentato gli studenti nel Consiglio di Amministrazione dell’Università di Salerno.' },
       ],
     },
     contact: {
@@ -66,18 +66,16 @@ const content = {
       elsewhere: 'Altrove',
       location: 'Salerno, Italia',
       resume: 'Curriculum (EN)',
-      resumeHref: '/cv_en.pdf',
       role: 'Ingegnere informatico / AI Engineer',
     },
   },
   en: {
-    skipToContent: 'Skip to content',
     nav: { experience: 'Experience', projects: 'Projects', journey: 'Journey', contact: 'Let’s talk' },
     navLabel: 'Main navigation',
     backToTop: 'Antonio Carbone, back to top',
     career: {
       eyebrow: 'Professional experience and education',
-      title: <>Experience, education<br />and research.</>,
+      title: <>Engineering first.<br />AI in the real world, today.</>,
       intro: 'Education gave me the method. Work taught me how to turn it into decisions, software and products that have to perform in the real world.',
       items: [
         { period: '2024 - present', kind: 'Work', role: 'AI Engineer', place: 'Affinity', text: 'I lead AI projects from requirements to production, combining development, technical decisions and team coordination.' },
@@ -97,7 +95,7 @@ const content = {
       product: 'In this context, I also worked on SoulAI, a conversational product whose technical design, development and integration I helped shape.',
       companyLink: 'Visit Affinity',
       companyHref: 'https://www.affinitylab.it/',
-      privateEyebrow: 'Private project',
+      privateEyebrow: 'Entrepreneurial project',
       privateTitle: 'BePlanny',
       privateText: 'Started with a colleague to simplify operations for appointment-based businesses. I contributed to the product vision and to the web and mobile ecosystem; internal details remain private.',
       privateLink: 'Visit beplanny.com',
@@ -110,15 +108,16 @@ const content = {
       action: 'Open GitHub',
       repos: [
         { name: 'carboxx-smart-finance-ai-app', label: 'Open source', language: 'JavaScript', text: 'Personal finance management with AI insights, portfolio analysis and natural-language data exploration.', href: 'https://github.com/carboxx/carboxx-smart-finance-ai-app' },
-        { name: 'carboxx_portfolio', label: 'Current portfolio', language: 'Web', text: 'The code behind the portfolio you are visiting: bilingual structure, motion and responsive layout.', href: 'https://github.com/carboxx/carboxx_portfolio' },
+        { name: 'carboxx_portfolio', label: 'Current portfolio', language: 'Web', text: 'The repository for the portfolio you are visiting. The public code will be updated with this version.', href: 'https://github.com/carboxx/carboxx_portfolio' },
       ],
     },
     journey: {
       eyebrow: 'Beyond the code',
       title: <>The experiences<br />that shaped me.</>,
       items: [
-        { title: 'University of Salerno', kicker: 'Education', image: '/piazzadelsapere-optimized.jpg', alt: 'The University of Salerno campus', text: 'I completed both my bachelor’s and master’s degrees in Computer Engineering here, following the Artificial Intelligence curriculum.' },
-        { title: 'StudentIngegneria and UniSa Board', kicker: 'Student representation', image: '/studentingegneria-optimized.jpg', alt: 'The StudentIngegneria group at the University of Salerno', text: 'As a StudentIngegneria representative and vice president, and as a member of the UniSa Board from 2021 to 2024, I organised, listened to and represented the student community.' },
+        { title: 'Lapio', kicker: 'My roots', image: '/lapio-optimized.jpg', alt: 'Landscape of Lapio in Irpinia, Italy', text: 'The place I come from. It taught me to be practical, value community and pay attention to people.' },
+        { title: 'StudentIngegneria', kicker: 'The community', image: '/studentingegneria-optimized.jpg', alt: 'The StudentIngegneria group at the University of Salerno', text: 'As a student representative and vice president, I learned to organise, listen and take responsibility for a community much larger than myself.' },
+        { title: 'Board of Directors', kicker: 'Responsibility', image: '/piazzadelsapere-optimized.jpg', alt: 'The University of Salerno campus', text: 'From 2021 to 2024, I represented students on the University of Salerno Board of Directors.' },
       ],
     },
     contact: {
@@ -130,7 +129,6 @@ const content = {
       elsewhere: 'Elsewhere',
       location: 'Salerno, Italy',
       resume: 'Resume',
-      resumeHref: '/cv_en.pdf',
       role: 'Computer Engineer / AI Engineer',
     },
   },
@@ -141,14 +139,11 @@ export default function PortfolioHome({ locale }: { locale: Locale }) {
 
   return (
     <main id="top">
-      <a className="skip-link" href="#esperienza">{copy.skipToContent}</a>
       <PortfolioMotion />
       <HeroChat locale={locale} />
 
       <header className="site-nav">
-        <a className="wordmark" href="#top" aria-label={copy.backToTop}>
-          <Image src="/carboxx-wordmark.png" alt="" width={640} height={130} priority />
-        </a>
+        <a className="wordmark" href="#top" aria-label={copy.backToTop}>carbo<span>xx</span></a>
         <nav aria-label={copy.navLabel}>
           <a href="#esperienza">{copy.nav.experience}</a>
           <a href="#progetti">{copy.nav.projects}</a>
@@ -213,12 +208,10 @@ export default function PortfolioHome({ locale }: { locale: Locale }) {
       </section>
 
       <section id="percorso" className="journey-section" aria-labelledby="journey-title">
-        <div className="journey-header">
-          <div className="journey-heading"><p className="overline">{copy.journey.eyebrow}</p><h2 id="journey-title">{copy.journey.title}</h2></div>
-        </div>
+        <div className="journey-header"><p className="overline">{copy.journey.eyebrow}</p><h2 id="journey-title">{copy.journey.title}</h2></div>
         <div className="journey-viewport"><div className="journey-track">
           {copy.journey.items.map((item) => (
-            <article className={`journey-slide ${item.title.length > 18 ? 'journey-slide--long' : ''} ${item.title.startsWith('StudentIngegneria') ? 'journey-slide--student' : ''}`} key={item.title}>
+            <article className={`journey-slide ${item.title.length > 18 ? 'journey-slide--long' : ''} ${item.title === 'StudentIngegneria' ? 'journey-slide--student' : ''}`} key={item.title}>
               <div className="journey-image"><Image src={item.image} alt={item.alt} fill sizes="(max-width: 800px) 100vw, 60vw" /></div>
               <div className="journey-copy"><p>{item.kicker}</p><h3>{item.title}</h3><span>{item.text}</span></div>
             </article>
@@ -241,7 +234,7 @@ export default function PortfolioHome({ locale }: { locale: Locale }) {
           <nav aria-label={copy.contact.elsewhere}>
             <a href="https://www.linkedin.com/in/antoniocarbone97" target="_blank" rel="noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
             <a href="https://github.com/carboxx" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
-            <a href={copy.contact.resumeHref} target="_blank" rel="noreferrer">{copy.contact.resume} <span aria-hidden="true">↗</span></a>
+            <a href="/cv_en.pdf" target="_blank" rel="noreferrer">{copy.contact.resume} <span aria-hidden="true">↗</span></a>
           </nav>
         </div>
         <footer><span>Antonio Carbone · {copy.contact.role}</span><span>© 2026</span></footer>
