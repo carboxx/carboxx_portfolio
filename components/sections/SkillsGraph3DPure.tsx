@@ -61,7 +61,8 @@ export function SkillsGraph3DPure() {
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    const container = containerRef.current;
+    if (!container) return;
 
     // Scene setup
     const scene = new THREE.Scene();
@@ -74,7 +75,7 @@ export function SkillsGraph3DPure() {
     // Camera
     const camera = new THREE.PerspectiveCamera(
       60,
-      containerRef.current.clientWidth / containerRef.current.clientHeight,
+      container.clientWidth / container.clientHeight,
       0.1,
       1000
     );
@@ -82,9 +83,9 @@ export function SkillsGraph3DPure() {
 
     // Renderer
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(containerRef.current.clientWidth, containerRef.current.clientHeight);
+    renderer.setSize(container.clientWidth, container.clientHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    containerRef.current.appendChild(renderer.domElement);
+    container.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
     // Lighting
@@ -209,8 +210,7 @@ export function SkillsGraph3DPure() {
     let hoveredNode: THREE.Mesh | null = null;
 
     const onMouseMove = (event: MouseEvent) => {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
+      const rect = container.getBoundingClientRect();
       mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
       mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
@@ -243,7 +243,7 @@ export function SkillsGraph3DPure() {
       }
     };
 
-    containerRef.current.addEventListener('mousemove', onMouseMove);
+    container.addEventListener('mousemove', onMouseMove);
 
     // Drag to rotate
     let isDragging = false;
@@ -302,8 +302,8 @@ export function SkillsGraph3DPure() {
       autoRotate = false;
     };
 
-    containerRef.current.addEventListener('mousedown', onMouseDown);
-    containerRef.current.addEventListener('wheel', onWheel, { passive: false });
+    container.addEventListener('mousedown', onMouseDown);
+    container.addEventListener('wheel', onWheel, { passive: false });
     window.addEventListener('mousemove', onMouseMoveRotate);
     window.addEventListener('mouseup', onMouseUp);
 
@@ -361,13 +361,12 @@ export function SkillsGraph3DPure() {
     // Cleanup
     return () => {
       cancelAnimationFrame(animationId);
-      const container = containerRef.current;
-      if (container && renderer.domElement) {
-        container.removeEventListener('mousemove', onMouseMove);
-        container.removeEventListener('mousedown', onMouseDown);
-        container.removeEventListener('wheel', onWheel);
-        window.removeEventListener('mousemove', onMouseMoveRotate);
-        window.removeEventListener('mouseup', onMouseUp);
+      container.removeEventListener('mousemove', onMouseMove);
+      container.removeEventListener('mousedown', onMouseDown);
+      container.removeEventListener('wheel', onWheel);
+      window.removeEventListener('mousemove', onMouseMoveRotate);
+      window.removeEventListener('mouseup', onMouseUp);
+      if (renderer.domElement.parentNode === container) {
         container.removeChild(renderer.domElement);
       }
       renderer.dispose();

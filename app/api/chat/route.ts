@@ -1,16 +1,67 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { searchKnowledge } from '@/lib/knowledge-base';
 
-// export const runtime = 'edge'; // Commentato per compatibilità con Groq
+const MAX_REQUEST_BYTES = 16_384;
+const MAX_MESSAGE_LENGTH = 1_200;
+const GROQ_TIMEOUT_MS = 15_000;
 
 export async function POST(req: NextRequest) {
   try {
-    const { message } = await req.json();
+    const contentLength = Number(req.headers.get('content-length'));
+    if (Number.isFinite(contentLength) && contentLength > MAX_REQUEST_BYTES) {
+      return NextResponse.json({ error: 'Request is too large' }, { status: 413 });
+    }
 
-    if (!message || typeof message !== 'string') {
+    const reader = req.body?.getReader();
+    if (!reader) {
+      return NextResponse.json({ error: 'Request body is required' }, { status: 400 });
+    }
+
+    const chunks: Uint8Array[] = [];
+    let bodyBytes = 0;
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+
+      bodyBytes += value.byteLength;
+      if (bodyBytes > MAX_REQUEST_BYTES) {
+        await reader.cancel().catch(() => {});
+        return NextResponse.json({ error: 'Request is too large' }, { status: 413 });
+      }
+
+      chunks.push(value);
+    }
+
+    const bodyBytesBuffer = new Uint8Array(bodyBytes);
+    let offset = 0;
+    for (const chunk of chunks) {
+      bodyBytesBuffer.set(chunk, offset);
+      offset += chunk.byteLength;
+    }
+
+    let body: unknown;
+    try {
+      body = JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(bodyBytesBuffer));
+    } catch {
+      return NextResponse.json({ error: 'Request body must be valid JSON' }, { status: 400 });
+    }
+
+    const message =
+      body && typeof body === 'object' && !Array.isArray(body) && 'message' in body
+        ? body.message
+        : undefined;
+
+    if (typeof message !== 'string' || !message.trim()) {
       return NextResponse.json(
         { error: 'Message is required' },
         { status: 400 }
+      );
+    }
+
+    if (message.length > MAX_MESSAGE_LENGTH) {
+      return NextResponse.json(
+        { error: `Message must be ${MAX_MESSAGE_LENGTH} characters or fewer` },
+        { status: 413 }
       );
     }
 
@@ -53,16 +104,26 @@ ${limitedContext.join('\n\n')}`;
         temperature: 0.7,
         max_tokens: 400,
       }),
+      signal: AbortSignal.timeout(GROQ_TIMEOUT_MS),
     });
 
     if (!response.ok) {
-      const errorData = await response.text();
-      console.error('Groq API error details:', errorData);
-      throw new Error(`Groq API error: ${response.statusText} - ${errorData}`);
+      console.error('Groq API request failed with status:', response.status);
+      return NextResponse.json({
+        response: getFallbackResponse(message, relevantContext),
+      });
     }
 
-    const data = await response.json();
-    const assistantMessage = data.choices[0]?.message?.content || 'Mi scuso, ma non sono riuscito a generare una risposta. Riprova per favore.';
+    const data = (await response.json()) as {
+      choices?: { message?: { content?: unknown } }[];
+    };
+    const assistantMessage = data.choices?.[0]?.message?.content;
+
+    if (typeof assistantMessage !== 'string' || !assistantMessage.trim()) {
+      return NextResponse.json({
+        response: getFallbackResponse(message, relevantContext),
+      });
+    }
 
     return NextResponse.json({
       response: assistantMessage,

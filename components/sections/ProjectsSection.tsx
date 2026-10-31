@@ -3,7 +3,6 @@
 import {
   startTransition,
   useDeferredValue,
-  useEffect,
   useMemo,
   useState,
 } from 'react';
@@ -153,10 +152,6 @@ export function ProjectsSection() {
   const t = projectContent[language];
   const [activeId, setActiveId] = useState(t.projects[0].id);
   const deferredId = useDeferredValue(activeId);
-
-  useEffect(() => {
-    setActiveId(t.projects[0].id);
-  }, [t.projects]);
 
   const activeProject = useMemo(
     () => t.projects.find((project) => project.id === deferredId) ?? t.projects[0],

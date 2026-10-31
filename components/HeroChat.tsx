@@ -50,16 +50,19 @@ export default function HeroChat({ locale }: { locale: 'it' | 'en' }) {
   const introMessages = copy.messages;
   const [visibleMessages, setVisibleMessages] = useState<string[]>([]);
   const [typing, setTyping] = useState(true);
-  const timersRef = useRef<number[]>([]);
   const threadRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const timers: number[] = [];
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (reducedMotion) {
-      setVisibleMessages([...introMessages]);
-      setTyping(false);
-      return;
+      const timer = window.setTimeout(() => {
+        setVisibleMessages([...introMessages]);
+        setTyping(false);
+      }, 0);
+      timers.push(timer);
+      return () => timers.forEach((scheduledTimer) => window.clearTimeout(scheduledTimer));
     }
 
     introMessages.forEach((message, index) => {
@@ -69,13 +72,13 @@ export default function HeroChat({ locale }: { locale: 'it' | 'en' }) {
 
         if (index < introMessages.length - 1) {
           const typingTimer = window.setTimeout(() => setTyping(true), 260);
-          timersRef.current.push(typingTimer);
+          timers.push(typingTimer);
         }
       }, 430 + index * 720);
-      timersRef.current.push(timer);
+      timers.push(timer);
     });
 
-    return () => timersRef.current.forEach((timer) => window.clearTimeout(timer));
+    return () => timers.forEach((timer) => window.clearTimeout(timer));
   }, [introMessages]);
 
   useGSAP(() => {
@@ -127,7 +130,7 @@ export default function HeroChat({ locale }: { locale: 'it' | 'en' }) {
             ))}
 
             {typing && (
-              <div className="chat-message chat-message--antonio" aria-label={copy.typing}>
+              <div className="chat-message chat-message--antonio" role="status" aria-label={copy.typing}>
                 <div className="typing-bubble" aria-hidden="true"><span /><span /><span /></div>
               </div>
             )}
@@ -142,7 +145,7 @@ export default function HeroChat({ locale }: { locale: 'it' | 'en' }) {
           </div>
         </div>
 
-        <a className="chat-enter" href="#esperienza">
+        <a className="chat-enter" href="#esperienza" aria-label={copy.continue}>
           <span>{copy.continue}</span>
           <i aria-hidden="true">↓</i>
         </a>

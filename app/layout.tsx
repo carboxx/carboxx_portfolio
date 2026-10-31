@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
 import { headers } from 'next/headers';
+import { siteUrl } from '@/lib/site-url';
 import './globals.css';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.antoniocarbone.com'),
+  metadataBase: siteUrl,
   title: 'Antonio Carbone | Computer Engineer and AI Engineer',
   description: 'Portfolio of Antonio Carbone, Computer Engineer and AI Engineer based in Salerno, Italy.',
   keywords: [

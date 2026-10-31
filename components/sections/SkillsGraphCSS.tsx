@@ -41,6 +41,14 @@ const categoryColors = {
   tools: { bg: 'bg-pink-500', glow: 'shadow-pink-500/50', border: 'border-pink-400' },
 };
 
+const particles = Array.from({ length: 50 }, (_, index) => ({
+  id: index,
+  left: (index * 37.7) % 100,
+  top: (index * 61.3 + 17) % 100,
+  animationDelay: (index % 7) * 0.45,
+  animationDuration: 2 + (index % 4) * 0.5,
+}));
+
 export function SkillsGraphCSS() {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [rotateX, setRotateX] = useState(20);
@@ -66,15 +74,15 @@ export function SkillsGraphCSS() {
 
       {/* Animated background particles */}
       <div className="absolute inset-0">
-        {[...Array(50)].map((_, i) => (
+        {particles.map((particle) => (
           <div
-            key={i}
+            key={particle.id}
             className="absolute w-1 h-1 bg-purple-400/30 rounded-full animate-pulse"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${2 + Math.random() * 3}s`,
+              left: `${particle.left}%`,
+              top: `${particle.top}%`,
+              animationDelay: `${particle.animationDelay}s`,
+              animationDuration: `${particle.animationDuration}s`,
             }}
           />
         ))}

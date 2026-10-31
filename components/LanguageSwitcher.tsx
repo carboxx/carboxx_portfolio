@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 type LanguageSwitcherProps = {
   locale: 'it' | 'en';
   className?: string;
@@ -13,23 +15,23 @@ export default function LanguageSwitcher({ locale, className = '' }: LanguageSwi
 
   return (
     <div className={`language-switcher ${className}`.trim()} aria-label="Language selection">
-      <a
+      <Link
         href="/"
         hrefLang="it"
         aria-current={locale === 'it' ? 'page' : undefined}
         onClick={() => rememberLanguage('it')}
       >
         IT
-      </a>
+      </Link>
       <span aria-hidden="true">/</span>
-      <a
+      <Link
         href="/en"
         hrefLang="en"
         aria-current={locale === 'en' ? 'page' : undefined}
         onClick={() => rememberLanguage('en')}
       >
         EN
-      </a>
+      </Link>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { ThemeToggle } from './ThemeToggle';
 import { LanguageToggle } from './LanguageToggle';
@@ -58,9 +59,11 @@ export function Header() {
               className="flex min-w-0 items-center gap-3"
             >
               <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
-                <img
+                <Image
                   src="/carboxx-logo.png"
                   alt="Carboxx Logo"
+                  width={28}
+                  height={28}
                   className="h-7 w-7 object-contain"
                 />
               </div>

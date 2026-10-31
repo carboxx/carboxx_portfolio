@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 const LANGUAGE_COOKIE = 'portfolio_language';
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const savedLanguage = request.cookies.get(LANGUAGE_COOKIE)?.value;
 

@@ -26,7 +26,7 @@ The opening conversation introduces the essential context before the main page u
 ## Run locally
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
@@ -37,7 +37,13 @@ For a production check:
 ```bash
 npm run check
 npm run build
+npm run start
+npm run test:smoke
 ```
+
+`test:smoke` expects the production server to be running on `http://127.0.0.1:3000`; set `BASE_URL` to use another address.
+
+Set `NEXT_PUBLIC_SITE_URL` to the final canonical HTTPS URL in the deployment environment so canonical, robots, and sitemap metadata use the deployed domain. The current default remains `https://www.antoniocarbone.com` until the replacement domain is confirmed. `GROQ_API_KEY` is optional; the chat API returns a local fallback when it is unset. If enabling live Groq responses, configure request rate limits in the hosting provider before adding the key.
 
 ## Project structure
 
@@ -45,7 +51,7 @@ npm run build
 app/                  Routes, metadata and global styles
 components/           Portfolio UI and motion
 public/               Images, fonts and downloadable CV
-middleware.ts         Locale detection and preference handling
+proxy.ts              Locale detection and preference handling
 ```
 
 ## Implementation notes
