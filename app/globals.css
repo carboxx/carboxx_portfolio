@@ -470,26 +470,78 @@
   line-height: 0.88;
 }
 
-.contact-aside {
-  border-left: 1px solid rgba(255, 255, 255, 0.35);
-  padding-left: 26px;
+.contact-invite {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border: 1px solid rgba(17, 17, 15, 0.1);
+  border-radius: 22px;
+  padding: 28px;
+  background: var(--acid);
+  color: var(--ink);
+  text-decoration: none;
+  transition: transform 220ms ease, box-shadow 220ms ease;
 }
 
-.contact-aside p {
-  margin: 0 0 18px;
-  color: var(--acid);
+.contact-invite-label {
   font-size: 11px;
   font-weight: 850;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
-.contact-aside span {
-  display: block;
-  max-width: 440px;
-  color: rgba(255, 255, 255, 0.72);
-  font-size: clamp(16px, 1.3vw, 20px);
-  line-height: 1.55;
+.contact-invite strong {
+  margin-top: 28px;
+  font-size: clamp(36px, 3.4vw, 52px);
+  font-weight: 800;
+  letter-spacing: -0.055em;
+  line-height: 1;
+}
+
+.contact-invite-copy {
+  margin-top: 12px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.contact-invite-footer {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 30px;
+  border-top: 1px solid rgba(17, 17, 15, 0.2);
+  padding-top: 18px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.contact-invite-arrow {
+  display: grid;
+  flex: 0 0 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--acid);
+  font-size: 26px;
+  transition: transform 220ms ease;
+}
+
+.contact-invite:hover,
+.contact-invite:focus-visible {
+  box-shadow: 0 12px 0 rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px);
+}
+
+.contact-invite:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 5px;
+}
+
+.contact-invite:hover .contact-invite-arrow {
+  transform: rotate(45deg);
 }
 
 .contact-section .contact-mail {
@@ -607,9 +659,9 @@
     font-size: clamp(52px, 14vw, 72px);
   }
 
-  .contact-aside {
-    margin-top: 48px;
-    padding-left: 18px;
+  .contact-invite {
+    margin-top: 36px;
+    padding: 24px;
   }
 
   .contact-section .contact-mail {
@@ -1048,7 +1100,7 @@ main {
 }
 
 .chat-reveal-copy > p {
-  margin: 0;
+  margin: 0 0 28px;
   color: var(--blue);
   font-size: 12px;
   font-weight: 800;
@@ -1146,23 +1198,43 @@ main {
   backdrop-filter: blur(18px);
 }
 
-.wordmark,
 .nav-contact,
 .site-nav nav a {
   font-size: 13px;
   font-weight: 800;
 }
 
-.wordmark {
+.nav-identity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   justify-self: start;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 22px;
-  font-style: italic;
-  letter-spacing: -0.07em;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
 }
 
-.wordmark span {
-  color: var(--accent);
+.nav-identity small {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+.nav-identity-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--blue);
+}
+
+.nav-identity:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 6px;
 }
 
 .site-nav nav {
@@ -2363,28 +2435,6 @@ main {
   backdrop-filter: none;
 }
 
-.wordmark {
-  font-family: "Instrument Serif", Georgia, serif;
-  font-size: 31px;
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: -0.065em;
-  line-height: 0.8;
-  transform: rotate(-2deg);
-  transform-origin: left center;
-  transition: transform 220ms ease;
-}
-
-.wordmark span {
-  color: var(--accent);
-}
-
-.wordmark:hover,
-.wordmark:focus-visible {
-  outline: none;
-  transform: rotate(0deg) translateY(-1px);
-}
-
 .profile-lead,
 .profile-note {
   grid-column: auto;
@@ -2799,9 +2849,9 @@ body::before {
 }
 
 .language-switcher a {
-  padding: 5px 1px 3px;
+  padding: 8px 5px 6px;
   color: inherit;
-  opacity: 0.48;
+  opacity: 1;
   transition: color 180ms ease, opacity 180ms ease;
 }
 
@@ -2813,8 +2863,12 @@ body::before {
 
 .language-switcher a:hover,
 .language-switcher a:focus-visible {
-  opacity: 1;
-  outline: none;
+  color: var(--blue);
+}
+
+.language-switcher a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
 }
 
 .chat-card-meta {
@@ -2832,7 +2886,12 @@ body::before {
 }
 
 .language-switcher--dark {
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.language-switcher--dark a:hover,
+.language-switcher--dark a:focus-visible {
+  color: var(--acid);
 }
 
 .language-switcher--dark a[aria-current="page"] {

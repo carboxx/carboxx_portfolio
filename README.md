@@ -13,7 +13,7 @@
 
 This repository contains the source code of my current portfolio. It brings together my professional experience, education, selected projects and the experiences that shaped the way I work.
 
-The opening conversation introduces the essential context before the main page unfolds into an editorial, scroll-driven layout. The website is available in Italian and English and adapts its initial language to the visitor's browser settings.
+The opening conversation introduces the essential context before the main page unfolds into an editorial, scroll-driven layout. Italian is available at `/` and English at `/en`; explicit language URLs remain stable regardless of browser settings or old preference cookies.
 
 ## Built with
 
@@ -43,7 +43,7 @@ npm run test:smoke
 
 `test:smoke` expects the production server to be running on `http://127.0.0.1:3000`; set `BASE_URL` to use another address.
 
-Set `NEXT_PUBLIC_SITE_URL` to the final canonical HTTPS URL in the deployment environment so canonical, robots, and sitemap metadata use the deployed domain. The current default remains `https://www.antoniocarbone.com` until the replacement domain is confirmed. `GROQ_API_KEY` is optional; the chat API returns a local fallback when it is unset. If enabling live Groq responses, configure request rate limits in the hosting provider before adding the key.
+Set `NEXT_PUBLIC_SITE_URL` to the canonical HTTPS URL in the deployment environment so canonical, robots, and sitemap metadata use the deployed domain. The default is `https://antoniocarbone.com`. Pages on other hosts, including Netlify preview URLs, carry `noindex`; Netlify branch and deploy previews are also excluded. `GROQ_API_KEY` is optional; the chat API returns a local fallback when it is unset. If enabling live Groq responses, configure request rate limits in the hosting provider before adding the key.
 
 ## Project structure
 

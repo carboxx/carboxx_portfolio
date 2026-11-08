@@ -3,7 +3,7 @@ import { headers } from 'next/headers';
 import { siteUrl } from '@/lib/site-url';
 import './globals.css';
 
-export const metadata: Metadata = {
+const sharedMetadata: Metadata = {
   metadataBase: siteUrl,
   title: 'Antonio Carbone | Computer Engineer and AI Engineer',
   description: 'Portfolio of Antonio Carbone, Computer Engineer and AI Engineer based in Salerno, Italy.',
@@ -23,11 +23,13 @@ export const metadata: Metadata = {
     title: 'Antonio Carbone | Ingegnere informatico e AI Engineer',
     description: 'Esperienza, formazione e prodotti digitali costruiti tra software e intelligenza artificiale.',
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  verification: { google: process.env.GOOGLE_SITE_VERIFICATION },
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  const indexable = (await headers()).get('x-portfolio-indexable') === 'true';
+  return { ...sharedMetadata, robots: { index: indexable, follow: true } };
+}
 
 export default async function RootLayout({
   children,
@@ -46,7 +48,11 @@ export default async function RootLayout({
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'Person',
+              '@id': new URL('/#antonio-carbone', siteUrl).toString(),
               name: 'Antonio Carbone',
+              url: siteUrl.toString(),
+              image: new URL('/antonio-photo.jpg', siteUrl).toString(),
+              description: 'Ingegnere informatico e AI Engineer a Salerno, specializzato in intelligenza artificiale, sviluppo software e prodotti digitali.',
               jobTitle: ['Ingegnere informatico e AI Engineer', 'Computer Engineer and AI Engineer'],
               address: {
                 '@type': 'PostalAddress',

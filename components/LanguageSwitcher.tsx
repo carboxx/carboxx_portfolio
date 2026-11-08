@@ -1,6 +1,4 @@
-'use client';
-
-import Link from 'next/link';
+/* eslint-disable @next/next/no-html-link-for-pages -- Language changes refresh the document, including html lang and server metadata. */
 
 type LanguageSwitcherProps = {
   locale: 'it' | 'en';
@@ -8,30 +6,27 @@ type LanguageSwitcherProps = {
 };
 
 export default function LanguageSwitcher({ locale, className = '' }: LanguageSwitcherProps) {
-  const rememberLanguage = (language: 'it' | 'en') => {
-    document.cookie = `portfolio_language=${language}; path=/; max-age=31536000; SameSite=Lax`;
-    document.documentElement.lang = language;
-  };
-
   return (
-    <div className={`language-switcher ${className}`.trim()} aria-label="Language selection">
-      <Link
+    <div className={`language-switcher ${className}`.trim()} aria-label={locale === 'it' ? 'Lingua' : 'Language'}>
+      <a
         href="/"
         hrefLang="it"
+        lang="it"
+        title="Italiano"
         aria-current={locale === 'it' ? 'page' : undefined}
-        onClick={() => rememberLanguage('it')}
       >
         IT
-      </Link>
+      </a>
       <span aria-hidden="true">/</span>
-      <Link
+      <a
         href="/en"
         hrefLang="en"
+        lang="en"
+        title="English"
         aria-current={locale === 'en' ? 'page' : undefined}
-        onClick={() => rememberLanguage('en')}
       >
         EN
-      </Link>
+      </a>
     </div>
   );
 }

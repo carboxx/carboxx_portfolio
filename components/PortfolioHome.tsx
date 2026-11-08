@@ -61,7 +61,8 @@ const content = {
       eyebrow: 'Contatti',
       title: <>Un progetto. Un ruolo.<br />Una buona idea.</>,
       lead: 'Il prossimo passo',
-      copy: 'Se c’è qualcosa di concreto da costruire, migliorare o discutere, scrivimi direttamente.',
+      action: 'Parliamone.',
+      copy: 'Raccontami cosa hai in mente.',
       email: 'Email',
       elsewhere: 'Altrove',
       location: 'Salerno, Italia',
@@ -124,7 +125,8 @@ const content = {
       eyebrow: 'Contact',
       title: <>A project. A role.<br />A good idea.</>,
       lead: 'The next step',
-      copy: 'If there is something concrete to build, improve or discuss, write to me directly.',
+      action: 'Let’s talk.',
+      copy: 'Tell me what you have in mind.',
       email: 'Email',
       elsewhere: 'Elsewhere',
       location: 'Salerno, Italy',
@@ -143,7 +145,10 @@ export default function PortfolioHome({ locale }: { locale: Locale }) {
       <HeroChat locale={locale} />
 
       <header className="site-nav">
-        <a className="wordmark" href="#top" aria-label={copy.backToTop}>carbo<span>xx</span></a>
+        <a className="nav-identity" href="#top" aria-label={copy.backToTop}>
+          <span className="nav-identity-dot" aria-hidden="true" />
+          <span>Antonio Carbone<small>AI Engineer</small></span>
+        </a>
         <nav aria-label={copy.navLabel}>
           <a href="#esperienza">{copy.nav.experience}</a>
           <a href="#progetti">{copy.nav.projects}</a>
@@ -222,7 +227,15 @@ export default function PortfolioHome({ locale }: { locale: Locale }) {
       <section id="contatti" className="contact-section section-pad" aria-labelledby="contact-title">
         <div className="contact-heading">
           <div><p className="overline overline-light">{copy.contact.eyebrow}</p><h2 id="contact-title">{copy.contact.title}</h2></div>
-          <div className="contact-aside"><p>{copy.contact.lead}</p><span>{copy.contact.copy}</span></div>
+          <a className="contact-invite" href="mailto:a.carbone613@gmail.com">
+            <span className="contact-invite-label">{copy.contact.lead}</span>
+            <strong>{copy.contact.action}</strong>
+            <span className="contact-invite-copy">{copy.contact.copy}</span>
+            <span className="contact-invite-footer">
+              <span>a.carbone613@gmail.com</span>
+              <span className="contact-invite-arrow" aria-hidden="true">↗</span>
+            </span>
+          </a>
         </div>
         <a className="contact-mail" href="mailto:a.carbone613@gmail.com">
           <span className="contact-mail-label">{copy.contact.email}</span>

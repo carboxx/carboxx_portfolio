@@ -161,6 +161,7 @@ export default function HeroChat({ locale }: { locale: 'it' | 'en' }) {
 
         <div className="chat-reveal-layer">
           <div className="chat-reveal-copy">
+            <p>Antonio Carbone · {copy.role}</p>
             <h1 id="hero-title">
               {copy.beforePortrait}
               <span className="inline-portrait" aria-hidden="true">

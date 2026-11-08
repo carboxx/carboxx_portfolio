@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 
 const baseUrl = process.env.BASE_URL || 'http://127.0.0.1:3000';
-const siteUrl = new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.antoniocarbone.com');
+const siteUrl = new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://antoniocarbone.com');
 
 test('Italian home renders with the Italian language', async () => {
   const response = await fetch(new URL('/', baseUrl), {
@@ -13,22 +13,50 @@ test('Italian home renders with the Italian language', async () => {
   assert.match(await response.text(), /<html[^>]+lang="it"/);
 });
 
-test('English browser preference redirects to the English page', async () => {
+test('Italian URL stays Italian despite browser language and an old English cookie', async () => {
   const response = await fetch(new URL('/', baseUrl), {
-    headers: { 'accept-language': 'en-US,en;q=0.9' },
+    headers: { 'accept-language': 'en-US,en;q=0.9', cookie: 'portfolio_language=en' },
     redirect: 'manual',
   });
 
-  assert.equal(response.status, 307);
-  assert.equal(new URL(response.headers.get('location'), baseUrl).pathname, '/en');
-  assert.match(response.headers.get('set-cookie') || '', /portfolio_language=en/);
+  assert.equal(response.status, 200);
+  assert.match(await response.text(), /<html[^>]+lang="it"/);
 });
 
 test('English home renders', async () => {
-  const response = await fetch(new URL('/en', baseUrl));
+  const response = await fetch(new URL('/en', baseUrl), {
+    headers: { cookie: 'portfolio_language=it' },
+  });
 
   assert.equal(response.status, 200);
   assert.match(await response.text(), /<html[^>]+lang="en"/);
+});
+
+test('preview pages are excluded from indexing and expose canonical metadata', async () => {
+  const response = await fetch(new URL('/', baseUrl));
+  assert.match(response.headers.get('x-robots-tag') || '', /noindex/);
+  const html = await response.text();
+  const canonical = html.match(/rel="canonical" href="([^"]+)"/)?.[1];
+  assert.equal(new URL(canonical).toString(), siteUrl.toString());
+  assert.match(html, /name="robots" content="noindex, follow"/);
+  assert.match(html, /property="og:image"/);
+  assert.match(html, /Antonio Carbone \| Ingegnere informatico e AI Engineer/);
+  assert.ok(html.includes(`"@id":"${new URL('/#antonio-carbone', siteUrl)}"`));
+});
+
+test('canonical domain is indexable while the Netlify host is excluded', async () => {
+  for (const host of [siteUrl.hostname, `www.${siteUrl.hostname.replace(/^www\./, '')}`]) {
+    const response = await fetch(new URL('/', baseUrl), {
+      headers: { host, 'x-forwarded-host': host, 'user-agent': 'Googlebot' },
+    });
+    assert.equal(response.status, 200);
+    assert.equal(response.headers.get('x-robots-tag'), null);
+    assert.match(await response.text(), /name="robots" content="index, follow"/);
+  }
+  const preview = await fetch(new URL('/', baseUrl), {
+    headers: { host: 'carboxx-portfolio.netlify.app', 'x-forwarded-host': 'carboxx-portfolio.netlify.app' },
+  });
+  assert.match(preview.headers.get('x-robots-tag') || '', /noindex/);
 });
 
 test('journey alias redirects to its section', async () => {

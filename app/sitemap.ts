@@ -4,7 +4,7 @@ import { siteUrl } from '@/lib/site-url';
 export default function sitemap(): MetadataRoute.Sitemap {
   const italianUrl = new URL('/', siteUrl).toString();
   const englishUrl = new URL('/en', siteUrl).toString();
-  const languages = { 'it-IT': italianUrl, en: englishUrl };
+  const languages = { 'it-IT': italianUrl, en: englishUrl, 'x-default': italianUrl };
 
   return [
     {
