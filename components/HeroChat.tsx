@@ -65,13 +65,13 @@ export default function HeroChat({ locale }: { locale: 'it' | 'en' }) {
       return () => timers.forEach((scheduledTimer) => window.clearTimeout(scheduledTimer));
     }
 
-    let nextMessageAt = 350;
+    let nextMessageAt = 250;
 
     introMessages.forEach((message, index) => {
       // Longer messages take more time to compose, without making the intro drag.
-      const typingDuration = Math.min(3200, Math.max(850, message.length * 24));
+      const typingDuration = Math.min(2200, Math.max(650, message.length * 16));
       const wordCount = message.trim().split(/\s+/).length;
-      const readingPause = Math.min(2000, Math.max(650, wordCount * 85));
+      const readingPause = Math.min(1300, Math.max(400, wordCount * 55));
       nextMessageAt += typingDuration;
 
       const timer = window.setTimeout(() => {
