@@ -17,6 +17,7 @@ const sharedMetadata: Metadata = {
   ],
   authors: [{ name: 'Antonio Carbone' }],
   creator: 'Antonio Carbone',
+  applicationName: 'Antonio Carbone',
   openGraph: { type: 'website', siteName: 'Antonio Carbone' },
   twitter: {
     card: 'summary_large_image',
@@ -78,6 +79,21 @@ export default async function RootLayout({
                 'Sviluppo software',
                 'Prodotti digitali',
               ],
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              '@id': new URL('/#website', siteUrl).toString(),
+              name: 'Antonio Carbone',
+              alternateName: 'Antonio Carbone — Ingegnere informatico e AI Engineer',
+              url: siteUrl.toString(),
+              publisher: { '@id': new URL('/#antonio-carbone', siteUrl).toString() },
+              inLanguage: ['it-IT', 'en'],
             }),
           }}
         />

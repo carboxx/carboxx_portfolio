@@ -66,6 +66,26 @@ test('journey alias redirects to its section', async () => {
   assert.match(response.headers.get('location') || '', /#percorso$/);
 });
 
+test('brand icons are discoverable by browsers and crawlers in both languages', async () => {
+  for (const path of ['/', '/en']) {
+    const response = await fetch(new URL(path, baseUrl));
+    const html = await response.text();
+    assert.match(html, /rel="icon"[^>]+href="\/favicon\.ico/);
+    assert.match(html, /rel="apple-touch-icon"/);
+    assert.match(html, /rel="manifest"/);
+  }
+  for (const path of ['/favicon.ico', '/icon.png', '/apple-icon.png']) {
+    const response = await fetch(new URL(path, baseUrl), { headers: { 'user-agent': 'Googlebot' } });
+    assert.equal(response.status, 200);
+    assert.match(response.headers.get('content-type') || '', /image\//);
+    assert.ok((await response.arrayBuffer()).byteLength > 100);
+  }
+  const response = await fetch(new URL('/manifest.webmanifest', baseUrl));
+  assert.equal(response.status, 200);
+  const manifest = await response.json();
+  assert.equal(manifest.short_name, 'Antonio Carbone');
+});
+
 test('robots and sitemap are served from the configured site origin', async () => {
   const robotsResponse = await fetch(new URL('/robots.txt', baseUrl));
   assert.equal(robotsResponse.status, 200);

@@ -148,7 +148,7 @@ export default function PortfolioHome({ locale }: { locale: Locale }) {
 
       <header className="site-nav">
         <a className="nav-identity" href="#top" aria-label={copy.backToTop}>
-          <span className="nav-identity-dot" aria-hidden="true" />
+          <Image className="nav-logo" src="/brand/logo.png" width={40} height={40} alt="" />
           <span>Antonio Carbone<small>AI Engineer</small></span>
         </a>
         <nav aria-label={copy.navLabel}>

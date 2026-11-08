@@ -1233,16 +1233,29 @@ main {
   letter-spacing: 0.03em;
 }
 
-.nav-identity-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--blue);
+.nav-logo {
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
 }
 
 .nav-identity:focus-visible {
   outline: 2px solid var(--blue);
   outline-offset: 6px;
+}
+
+@media (max-width: 380px) {
+  .nav-identity {
+    gap: 8px;
+    font-size: 12px;
+  }
+
+  .nav-logo {
+    flex-basis: 34px;
+    width: 34px;
+    height: 34px;
+  }
 }
 
 .site-nav nav {
