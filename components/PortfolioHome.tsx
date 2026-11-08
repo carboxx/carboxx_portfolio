@@ -63,7 +63,7 @@ const content = {
       lead: 'Il prossimo passo',
       action: 'Parliamone.',
       copy: 'Raccontami cosa hai in mente.',
-      emailLink: 'La mia email, qui sotto',
+      emailLink: 'Vai all’indirizzo email',
       email: 'Email',
       elsewhere: 'Altrove',
       location: 'Salerno, Italia',
@@ -128,7 +128,7 @@ const content = {
       lead: 'The next step',
       action: 'Let’s talk.',
       copy: 'Tell me what you have in mind.',
-      emailLink: 'My email, just below',
+      emailLink: 'Go to the email address',
       email: 'Email',
       elsewhere: 'Elsewhere',
       location: 'Salerno, Italy',
@@ -229,12 +229,11 @@ export default function PortfolioHome({ locale }: { locale: Locale }) {
       <section id="contatti" className="contact-section section-pad" aria-labelledby="contact-title">
         <div className="contact-heading">
           <div><p className="overline overline-light">{copy.contact.eyebrow}</p><h2 id="contact-title">{copy.contact.title}</h2></div>
-          <a className="contact-invite" href="#email">
+          <a className="contact-invite" href="#email" aria-label={`${copy.contact.action} ${copy.contact.emailLink}`}>
             <span className="contact-invite-label">{copy.contact.lead}</span>
             <strong>{copy.contact.action}</strong>
             <span className="contact-invite-copy">{copy.contact.copy}</span>
             <span className="contact-invite-footer">
-              <span>{copy.contact.emailLink}</span>
               <span className="contact-invite-arrow" aria-hidden="true">↓</span>
             </span>
           </a>
