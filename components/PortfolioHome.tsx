@@ -9,7 +9,7 @@ const content = {
   it: {
     nav: { experience: 'Esperienza', projects: 'Progetti', journey: 'Percorso', contact: 'Parliamone' },
     navLabel: 'Navigazione principale',
-    backToTop: 'Antonio Carbone, torna all’inizio',
+    backToTop: 'carboxx, torna all’inizio',
     career: {
       eyebrow: 'Percorso professionale e formazione',
       title: <>Ingegneria prima.<br />AI nel mondo reale, oggi.</>,
@@ -73,7 +73,7 @@ const content = {
   en: {
     nav: { experience: 'Experience', projects: 'Projects', journey: 'Journey', contact: 'Let’s talk' },
     navLabel: 'Main navigation',
-    backToTop: 'Antonio Carbone, back to top',
+    backToTop: 'carboxx, back to top',
     career: {
       eyebrow: 'Professional experience and education',
       title: <>Engineering first.<br />AI in the real world, today.</>,
@@ -146,8 +146,7 @@ export default function PortfolioHome({ locale }: { locale: Locale }) {
 
       <header className="site-nav">
         <a className="nav-identity" href="#top" aria-label={copy.backToTop}>
-          <Image className="nav-logo" src="/brand/logo.png" width={40} height={40} alt="" />
-          <span>Antonio Carbone<small>AI Engineer</small></span>
+          <Image className="nav-logo" src="/brand/carboxx-c.png" width={40} height={40} alt="" />
         </a>
         <nav aria-label={copy.navLabel}>
           <a href="#esperienza">{copy.nav.experience}</a>

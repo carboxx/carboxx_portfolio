@@ -1215,22 +1215,7 @@ main {
 .nav-identity {
   display: flex;
   align-items: center;
-  gap: 12px;
   justify-self: start;
-  color: var(--ink);
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  line-height: 1.25;
-}
-
-.nav-identity small {
-  display: block;
-  margin-top: 4px;
-  color: var(--muted);
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.03em;
 }
 
 .nav-logo {
@@ -1246,11 +1231,6 @@ main {
 }
 
 @media (max-width: 380px) {
-  .nav-identity {
-    gap: 8px;
-    font-size: 12px;
-  }
-
   .nav-logo {
     flex-basis: 34px;
     width: 34px;
