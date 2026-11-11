@@ -29,7 +29,6 @@ const content = {
       },
     ],
     path: 'Scopri il percorso completo',
-    cv: 'Scarica il CV',
   },
   en: {
     kicker: 'Journey',
@@ -54,14 +53,12 @@ const content = {
       },
     ],
     path: 'Explore the full journey',
-    cv: 'Download CV',
   },
 };
 
 export function PersonalSection() {
   const { language } = useLanguage();
   const t = content[language];
-  const cvPath = language === 'it' ? '/cv_it.pdf' : '/cv_en.pdf';
 
   return (
     <section id="journey" className="relative py-28">
@@ -115,13 +112,6 @@ export function PersonalSection() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
             </Link>
-            <a
-              href={cvPath}
-              download
-              className="text-sm font-semibold text-slate-500 transition-colors duration-300 hover:text-slate-950 dark:text-slate-400 dark:hover:text-white"
-            >
-              {t.cv}
-            </a>
           </ScrollReveal>
         </div>
       </div>

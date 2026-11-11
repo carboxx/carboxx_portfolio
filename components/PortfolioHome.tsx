@@ -67,7 +67,6 @@ const content = {
       email: 'Email',
       elsewhere: 'Altrove',
       location: 'Salerno, Italia',
-      resume: 'Curriculum (EN)',
       role: 'Ingegnere informatico / AI Engineer',
     },
   },
@@ -132,7 +131,6 @@ const content = {
       email: 'Email',
       elsewhere: 'Elsewhere',
       location: 'Salerno, Italy',
-      resume: 'Resume',
       role: 'Computer Engineer / AI Engineer',
     },
   },
@@ -248,7 +246,6 @@ export default function PortfolioHome({ locale }: { locale: Locale }) {
           <nav aria-label={copy.contact.elsewhere}>
             <a href="https://www.linkedin.com/in/antoniocarbone97" target="_blank" rel="noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
             <a href="https://github.com/carboxx" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
-            <a href="/cv_en.pdf" target="_blank" rel="noreferrer">{copy.contact.resume} <span aria-hidden="true">↗</span></a>
           </nav>
         </div>
         <footer><span>Antonio Carbone · {copy.contact.role}</span><span>© 2026</span></footer>

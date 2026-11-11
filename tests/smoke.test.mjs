@@ -66,6 +66,22 @@ test('journey alias redirects to its section', async () => {
   assert.match(response.headers.get('location') || '', /#percorso$/);
 });
 
+test('withdrawn curricula are not linked or downloadable, including direct URLs', async () => {
+  for (const path of ['/', '/en']) {
+    const response = await fetch(new URL(path, baseUrl));
+    assert.doesNotMatch(await response.text(), /href="[^\"]*cv_(?:it|en)\.pdf/);
+  }
+  for (const path of ['/cv_it.pdf', '/cv_en.pdf']) {
+    for (const method of ['GET', 'HEAD']) {
+      const response = await fetch(new URL(path, baseUrl), { method });
+      assert.equal(response.status, 410);
+      assert.equal(response.headers.get('cache-control'), 'no-store');
+      assert.match(response.headers.get('x-robots-tag') || '', /noindex/);
+      assert.equal((await response.arrayBuffer()).byteLength, 0);
+    }
+  }
+});
+
 test('brand icons are discoverable by browsers and crawlers in both languages', async () => {
   for (const path of ['/', '/en']) {
     const response = await fetch(new URL(path, baseUrl));
