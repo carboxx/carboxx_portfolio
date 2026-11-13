@@ -8,9 +8,9 @@ export default function manifest(): MetadataRoute.Manifest {
     start_url: '/',
     display: 'browser',
     background_color: '#f2efe7',
-    theme_color: '#11110f',
+    theme_color: '#1945d5',
     icons: [
-      { src: '/brand/carboxx-c-192.png', sizes: '192x192', type: 'image/png' },
+      { src: '/brand/icon-192.png', sizes: '192x192', type: 'image/png' },
       { src: '/icon.png', sizes: '512x512', type: 'image/png' },
     ],
   };
